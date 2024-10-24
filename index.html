@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スマホをマウスとして使う</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    #touchArea {
+      width: 100vw;
+      height: 100vh;
+      background-color: lightgray;
+    }
+  </style>
+</head>
+<body>
+  <div id="touchArea"></div>
+
+  <script>
+    const touchArea = document.getElementById('touchArea');
+
+    touchArea.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      const x = touch.clientX;
+      const y = touch.clientY;
+
+      // サーバーに座標を送信する（WebSocketやAPIを使って）
+      console.log(`X: ${x}, Y: ${y}`);
+
+      // WebSocketなどを使用してマウス座標を送信する処理を追加
+      // ws.send(JSON.stringify({ x, y }));
+    });
+
+    touchArea.addEventListener('touchend', () => {
+      console.log('タッチ終了');
+    });
+  </script>
+</body>
+</html>
